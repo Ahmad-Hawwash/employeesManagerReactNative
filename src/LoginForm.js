@@ -1,3 +1,5 @@
+import { signInUser } from './Actions';
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements';
@@ -25,7 +27,9 @@ class LoginForm extends Component {
             return <FormValidationMessage>Password not valid</FormValidationMessage>;
     }
 
-    
+    signIn() {
+        this.props.signInUser(this.state.email, this.state.password);
+    }
 
     // passwordChanged() {
     //     //this.setState({ password: text })
@@ -52,4 +56,4 @@ class LoginForm extends Component {
 
 }
 
-export default LoginForm;
+export default connect(null, { signInUser })(LoginForm);
