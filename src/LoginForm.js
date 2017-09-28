@@ -4,6 +4,27 @@ import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-nativ
 
 class LoginForm extends Component {
 
+    constructor() {
+        super();
+        this.state = {
+            email: '',
+            password: ''
+        };
+    }
+    emailValidation() {
+        if (this.state.email === "a")
+            return <View />;
+        else
+            return <FormValidationMessage>Email not valid</FormValidationMessage>;
+    }
+
+    passwordValidation() {
+        if (this.state.password === "123")
+            return <View />;
+        else
+            return <FormValidationMessage>Password not valid</FormValidationMessage>;
+    }
+
     
 
     // passwordChanged() {
@@ -15,11 +36,11 @@ class LoginForm extends Component {
         return (
             <View>
                 <FormLabel> Email </FormLabel>
-                <FormInput onChangeText={text =>  console.log(text)} />
-                {/* {this.emailValidation()} */}
+                <FormInput onChangeText={text => this.setState({ email: text })} />
+                {this.emailValidation()}
                 <FormLabel> Password </FormLabel>
-                <FormInput onChangeText={text => console.log(text)} />
-                {/* {this.passwordValidation()} */}
+                <FormInput onChangeText={text => this.setState({ password: text })} />
+                {this.passwordValidation()}
                 <Button
                     onPress={()=>this.signIn()}
                     large
